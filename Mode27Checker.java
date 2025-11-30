@@ -22,5 +22,17 @@ public class Mode27Checker implements Modes{
                 }
             }));
         }
+        for ( i = 0 ; i< 9 ; i ++ )
+        {
+            threads.add(new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if(!check.isValid(loader.getColumn(i)) )
+                    {
+                        check .printAllsudokuDublicate(1,i) ;
+                    }
+                }
+            }));
+        }
     }
 }
