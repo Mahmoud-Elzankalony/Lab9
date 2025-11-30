@@ -48,5 +48,14 @@ public class Mode27Checker implements Modes{
             }));
         }
 
+         for(Thread thread : threads) {
+            thread.start();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }
