@@ -1,8 +1,13 @@
 import java.util.ArrayList;
 
 public class Mode27Checker implements Modes{
-    private loadFromFile loader = new loadFromFile();
+    private loadFromFile loader ;
     public static  int i =0;
+
+    public Mode27Checker() {
+        this.loader = new loadFromFile();
+    }
+
     @Override
     public void check() {
         ArrayList<Thread> threads = new ArrayList<>();
@@ -22,6 +27,7 @@ public class Mode27Checker implements Modes{
                 }
             }));
         }
+
         for ( i = 0 ; i< 9 ; i ++ )
         {
             threads.add(new Thread(new Runnable() {
@@ -48,15 +54,8 @@ public class Mode27Checker implements Modes{
             }));
         }
 
-         for(Thread thread : threads) {
+        for(Thread thread : threads)
             thread.start();
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
     }
-    
 }
