@@ -6,7 +6,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class loadFromFile
 {
-    private final String filename = "test1_valid.txt" ;
+    private final String filename = "test2_invalid.txt" ;
     private int[][] content ;
 
     public int[][] getContent() throws IOException

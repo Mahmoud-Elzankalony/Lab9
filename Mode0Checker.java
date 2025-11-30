@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public  class Mode0Checker  {
+public  class Mode0Checker implements Modes {
 
    private loadFromFile loader = new loadFromFile();
    
@@ -8,18 +8,19 @@ public  class Mode0Checker  {
          loader.getContent() ;
         
     }
-    
 
-    public boolean checkMode0() {
-        boolean flag = true ;
+    @Override
+    public void check() {
         unitCheck check = new unitCheck();
+//        unitCheck checkToprint = new unitCheck();
+
+
 
         for ( int i = 0 ; i < 9 ; i ++ )
         {
             if(!check.isValid(loader.getRow(i)) )
             {
-                check .func(0,i) ;
-                flag = false ;
+                check .printAllsudokuDublicate(0,i) ;
             }
             
             
@@ -29,8 +30,7 @@ public  class Mode0Checker  {
         {
             if(!check.isValid(loader.getColumn(i)) )
             {
-                check.func(1,i) ;
-                flag = false ;
+                check.printAllsudokuDublicate(1,i); ;
             }
            
         }
@@ -38,15 +38,10 @@ public  class Mode0Checker  {
         {
             if(!check.isValid(loader.getBox(i)) )
             {
-                check.func(2,i) ;
-                flag = false ;
+                check.printAllsudokuDublicate(2,i) ;
             }
         }
-        return flag ;
+
     }
 
-
-
-  
-    
 }
