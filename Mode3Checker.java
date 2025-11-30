@@ -5,9 +5,12 @@ public class Mode3Checker implements Modes {
     
     private loadFromFile loader = new loadFromFile();
 
-    
-    public Mode3Checker() throws IOException {
-        loader.getContent();
+    private final String filename ;
+   
+    public Mode3Checker(String filename) throws IOException {
+         this.filename = filename;
+         loader.getContent(filename) ;
+        
     }
     
     @Override

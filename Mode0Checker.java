@@ -3,19 +3,18 @@ import java.io.IOException;
 public  class Mode0Checker implements Modes {
 
    private loadFromFile loader = new loadFromFile();
+   private final String filename ;
    
-    public Mode0Checker() throws IOException {
-         loader.getContent() ;
+    public Mode0Checker(String filename) throws IOException {
+         this.filename = filename;
+         loader.getContent(filename) ;
         
     }
 
     @Override
     public void check() {
         unitCheck check = new unitCheck();
-//        unitCheck checkToprint = new unitCheck();
-
-
-
+        
         for ( int i = 0 ; i < 9 ; i ++ )
         {
             if(!check.isValid(loader.getRow(i)) )

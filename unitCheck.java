@@ -61,6 +61,7 @@ public class unitCheck
                 break;
         }
 
+        
         System.out.println( t + " " + (index+1) + " " + "#" + duplicateNum + " " + Locations ); ;
     }
 

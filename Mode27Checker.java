@@ -5,10 +5,11 @@ public class Mode27Checker implements Modes{
     private loadFromFile loader ;
     public static  int i =0;
 
-    public Mode27Checker() {
+    public Mode27Checker(String filename) {
         this.loader = new loadFromFile();
+
         try {
-            this.loader.getContent();
+            this.loader.getContent(filename);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
