@@ -14,20 +14,14 @@ public class Factory {
                     throw new RuntimeException(e);
                 }
             case "MODE27" :
-                try {
-                    return new Mode0Checker();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                return new Mode27Checker();
             case "MODE3" :
                 try {
                     return new Mode3Checker();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-            default:
-                return  null;
+            default: return null;
         }
 
     }

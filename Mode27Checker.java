@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Mode27Checker implements Modes{
@@ -6,6 +7,11 @@ public class Mode27Checker implements Modes{
 
     public Mode27Checker() {
         this.loader = new loadFromFile();
+        try {
+            this.loader.getContent();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -17,12 +23,13 @@ public class Mode27Checker implements Modes{
 
         for ( i = 0 ; i< 9 ; i ++ )
         {
+            final  int index = i;
             threads.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if(!check.isValid(loader.getRow(i)) )
+                    if(!check.isValid(loader.getRow(index)) )
                     {
-                        check .printAllsudokuDublicate(0,i) ;
+                        check .printAllsudokuDublicate(0,index) ;
                     }
                 }
             }));
@@ -30,12 +37,13 @@ public class Mode27Checker implements Modes{
 
         for ( i = 0 ; i< 9 ; i ++ )
         {
+            final  int index = i;
             threads.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if(!check.isValid(loader.getColumn(i)) )
+                    if(!check.isValid(loader.getColumn(index)) )
                     {
-                        check .printAllsudokuDublicate(1,i) ;
+                        check .printAllsudokuDublicate(1,index) ;
                     }
                 }
             }));
@@ -43,19 +51,27 @@ public class Mode27Checker implements Modes{
 
         for ( i = 0 ; i< 9 ; i ++ )
         {
+            final  int index = i;
             threads.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if(!check.isValid(loader.getBox(i)) )
+                    if(!check.isValid(loader.getBox(index)) )
                     {
-                        check .printAllsudokuDublicate(2,i) ;
+                        check .printAllsudokuDublicate(2,index) ;
                     }
                 }
             }));
         }
 
         for(Thread thread : threads)
-            thread.start();
+        { thread.start();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 
     }
 }
