@@ -4,12 +4,11 @@ import java.util.TreeMap;
 public class unitCheck
 
 {
+    private static boolean checkValidity = true;
     TreeMap<Integer,ArrayList<Integer>> mapLocations = new TreeMap<>();
      TreeMap<Integer,Integer> mapValues = new TreeMap<>();
     public boolean isValid (int[] numbers  )
     {
-        
-        
 
         for ( int i = 1 ; i < 10 ; i++ )
         {
@@ -37,6 +36,11 @@ public class unitCheck
         }
         else
         {
+            if(checkValidity== true)
+            {
+                System.out.println("Invalid");
+                checkValidity=false;
+            }
             return false ;
         }
     }
@@ -60,8 +64,14 @@ public class unitCheck
         System.out.println( t + " " + (index+1) + " " + "#" + duplicateNum + " " + Locations ); ;
     }
 
-    public void func(int type, int index)
+    public static boolean isCheckValidity() {
+        return checkValidity;
+    }
+
+    public void printAllsudokuDublicate(int type, int index)
     {
+
+
          for ( int i = 1 ; i < 10 ; i++ )
         {
             if ( mapValues.get(i) > 1 )
@@ -70,4 +80,5 @@ public class unitCheck
             }
         }
     }
+
 }
