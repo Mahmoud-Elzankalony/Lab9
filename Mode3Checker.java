@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Mode3Checker implements Modes {
     
